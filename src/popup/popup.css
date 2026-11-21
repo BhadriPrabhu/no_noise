@@ -1,0 +1,233 @@
+/* Base setup following Image 3 deep gradient aesthetic */
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 256px;
+  padding: 16px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Gradated Dark Cyber Ambient BG from image 3, layered to eliminate boxiness */
+  background: radial-gradient(130% 90% at 50% 0%, #1c1a2d 0%, #0d0c13 100%);
+  color: #c9c7d4;
+  box-sizing: border-box;
+}
+
+.extension-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+
+.brand-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.utility-icon-btn {
+  background: none;
+  border: none;
+  color: #6a687a;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.utility-icon-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.utility-icon-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Controls List */
+.controls-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 12px;
+  /* Natural subtle inset layer, not flat or rectangular-heavy */
+  background: rgba(114, 74, 232, 0.03);
+  border: 1px solid rgba(114, 74, 232, 0.04);
+  transition: background 0.2s ease, border-color 0.2s;
+}
+
+.toggle-row:hover {
+  background: rgba(114, 74, 232, 0.06);
+  border-color: rgba(114, 74, 232, 0.12);
+}
+
+.label-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  pointer-events: none;
+}
+
+.primary-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.sub-label {
+  font-size: 10.5px;
+  color: #8e8aa6;
+}
+
+/* Toggle Switch Style from the modern mobile/custom interfaces */
+.switch-wrapper {
+  position: relative;
+  width: 32px;
+  height: 18px;
+}
+
+.native-switch {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.custom-switch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #171523;
+  border: 1px solid #232034;
+  border-radius: 20px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-switch::before {
+  content: "";
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
+  background: #413e54;
+  border-radius: 50%;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* Active State Custom colors matching Image 3 (Neon Purple accentuation) */
+.native-switch:checked + .custom-switch {
+  background: #5b36e0;
+  border-color: #724ae8;
+  box-shadow: 0 0 6px rgba(114, 74, 232, 0.4);
+}
+
+.native-switch:checked + .custom-switch::before {
+  transform: translateX(14px);
+  background: #ffffff;
+}
+
+/* Custom Visual Divider */
+.ui-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(114, 74, 232, 0.15) 50%, transparent);
+  margin: 14px 0;
+}
+
+/* App Buttons */
+.app-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Action Button base */
+.action-btn {
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Natural Accent Button, matching the vibrant action-centric shades */
+/* Primary button: matches the active toggle accent with crisp white text */
+.action-btn.is-green {
+  background: #5b36e0;
+  color: #ffffff;
+  border: 1px solid #724ae8;
+  box-shadow: 0 2px 10px rgba(91, 54, 224, 0.35);
+}
+
+.action-btn.is-green:hover {
+  background: #6844eb;
+  box-shadow: 0 4px 14px rgba(114, 74, 232, 0.45);
+}
+
+.action-btn.is-green:active {
+  background: #4e2cc7;
+}
+
+/* Secondary button: lifted surface with higher-contrast text & border */
+.action-btn.is-secondary {
+  background: #221f35;
+  color: #e4e2f0;
+  border: 1px solid #353152;
+}
+
+.action-btn.is-secondary:hover {
+  background: #2b2742;
+  color: #ffffff;
+  border-color: #4b4570;
+}
+
+.action-btn.is-secondary:active {
+  background: #1b182b;
+}
