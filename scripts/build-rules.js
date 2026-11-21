@@ -73,7 +73,7 @@ const LISTS = [
                 priority: 1,
                 action: { type: "block" },
                 condition: {
-                    urlFilter: "||spclient.wg.spotify.com/ads/",
+                    urlFilter: "||spotify.com/ads/",
                     resourceTypes: ["xmlhttprequest", "script", "image", "media"]
                 }
             },
@@ -82,7 +82,7 @@ const LISTS = [
                 priority: 1,
                 action: { type: "block" },
                 condition: {
-                    urlFilter: "||spclient.wg.spotify.com/ad-logic/",
+                    urlFilter: "||spotify.com/ad-logic/",
                     resourceTypes: ["xmlhttprequest", "script"]
                 }
             },
