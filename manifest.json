@@ -5,9 +5,13 @@
     "description": "Block ads, trackers, and web clutter for a cleaner, faster browsing experience.",
     "permissions": [
         "declarativeNetRequest",
+        "declarativeNetRequestFeedback",
         "storage",
         "activeTab",
         "scripting"
+    ],
+    "host_permissions": [
+        "<all_urls>"
     ],
     "icons": {
         "16": "assets/icons/icon16.png",
@@ -53,7 +57,20 @@
             ],
             "css": [
                 "src/content/cosmetic.css"
-            ]
+            ],
+            "js": [
+                "src/content/cosmetic-sync.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "*://*.youtube.com/*"
+            ],
+            "js": [
+                "src/content/youtube-ads.js"
+            ],
+            "run_at": "document_idle"
         }
     ]
 }
