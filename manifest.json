@@ -1,0 +1,59 @@
+{
+    "manifest_version": 3,
+    "name": "NoNoise",
+    "version": "1.0.0",
+    "description": "Block ads, trackers, and web clutter for a cleaner, faster browsing experience.",
+    "permissions": [
+        "declarativeNetRequest",
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "icons": {
+        "16": "assets/icons/icon16.png",
+        "48": "assets/icons/icon48.png",
+        "128": "assets/icons/icon128.png"
+    },
+    "action": {
+        "default_popup": "src/popup/popup.html",
+        "default_title": "NoNoise",
+        "default_icon": {
+            "16": "assets/icons/icon16.png",
+            "48": "assets/icons/icon48.png",
+            "128": "assets/icons/icon128.png"
+        }
+    },
+    "options_page": "src/options/options.html",
+    "background": {
+        "service_worker": "src/background/service-worker.js"
+    },
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "ads",
+                "enabled": true,
+                "path": "rules/ads.json"
+            },
+            {
+                "id": "trackers",
+                "enabled": true,
+                "path": "rules/trackers.json"
+            },
+            {
+                "id": "annoyances",
+                "enabled": true,
+                "path": "rules/annoyances.json"
+            }
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [
+                "src/content/cosmetic.css"
+            ]
+        }
+    ]
+}
