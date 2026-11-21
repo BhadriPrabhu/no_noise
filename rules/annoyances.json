@@ -1,0 +1,20 @@
+[
+  {
+    "id": 2001,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||cookiebot.com^",
+      "resourceTypes": ["script", "sub_frame"]
+    }
+  },
+  {
+    "id": 2002,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||intercom.io^",
+      "resourceTypes": ["script", "xmlhttprequest"]
+    }
+  }
+]
