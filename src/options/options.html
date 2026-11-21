@@ -4,9 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>NoNoise - Analytics & Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../styles/global.css">
     <style>
         :root {
+            --font-display: "Fraunces", Georgia, serif;
+            --font-ui: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            
             --bg-top: #1c1a2d;
             --bg-bottom: #0d0c13;
             --surface: rgba(255, 255, 255, 0.03);
@@ -24,12 +32,13 @@
 
         * {
             box-sizing: border-box;
+            font-family: var(--font-ui);
         }
 
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: var(--font-ui) !important;
             background: radial-gradient(120% 80% at 50% 0%, var(--bg-top) 0%, var(--bg-bottom) 100%);
             color: var(--text-secondary);
             padding: 36px 24px 64px;
@@ -68,7 +77,8 @@
 
         .brand h1 {
             margin: 0;
-            font-size: 20px;
+            font-family: var(--font-display);
+            font-size: 22px;
             font-weight: 700;
             color: var(--text-primary);
             letter-spacing: -0.02em;
@@ -157,53 +167,138 @@
             color: #ffffff;
         }
 
-        /* KPI Grid */
-        .kpi-grid {
+        /* Compact Edge-Bar Telemetry Strip */
+        .telemetry-strip {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: 1.45fr 1fr 1fr 1.1fr;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            overflow: hidden;
         }
 
         @media (max-width: 780px) {
-            .kpi-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .telemetry-strip {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
-        .kpi-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px 20px;
+        .t-cell {
+            position: relative;
+            padding: 16px 20px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background 0.18s ease;
+        }
+
+        .t-cell:last-child {
+            border-right: none;
+        }
+
+        .t-cell:hover {
+            background: rgba(114, 74, 232, 0.04);
+        }
+
+        .t-hero {
+            background: radial-gradient(120% 100% at 0% 0%, rgba(114, 74, 232, 0.11) 0%, transparent 70%);
+        }
+
+        .t-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 8px;
         }
 
-        .kpi-card.highlight {
-            background: linear-gradient(145deg, rgba(91, 54, 224, 0.18), rgba(255, 255, 255, 0.02));
-            border-color: rgba(114, 74, 232, 0.4);
-        }
-
-        .kpi-label {
-            font-size: 11.5px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .t-label {
+            font-size: 12.5px;
+            font-weight: 500;
             color: var(--text-muted);
         }
 
-        .kpi-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+        .t-pct {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
         }
 
-        .kpi-sub {
+        .t-meta {
             font-size: 11.5px;
+            font-weight: 500;
             color: var(--accent-soft);
+        }
+
+        .t-meta.is-green {
+            color: #4ade80;
+        }
+
+        .t-main {
+            display: flex;
+            align-items: baseline;
+            gap: 7px;
+        }
+
+        .t-hero-val {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .t-val {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+            line-height: 1.05;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .t-unit {
+            font-size: 12.5px;
+            color: var(--text-muted);
+        }
+
+        /* Flush bottom edge bars */
+        .t-edge-bar {
+            width: 100%;
+            height: 4px;
+            display: flex;
+            gap: 3px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .t-edge-fill,
+        .r-ads,
+        .r-trk,
+        .r-ann {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.35s ease;
+        }
+
+        .r-ads {
+            background: #724ae8;
+        }
+
+        .r-trk {
+            background: #a78bfa;
+        }
+
+        .r-ann {
+            background: #38bdf8;
+        }
+
+        .t-cell:last-child .t-edge-bar {
+            visibility: hidden;
         }
 
         /* Main Analytics Grid */
@@ -236,7 +331,8 @@
         }
 
         .card-title {
-            font-size: 14px;
+            font-family: var(--font-display);
+            font-size: 15.5px;
             font-weight: 600;
             color: var(--text-primary);
             margin: 0;
@@ -291,10 +387,9 @@
         }
 
         .donut-caption {
-            font-size: 10.5px;
+            font-size: 11px;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.02em;
         }
 
         .legend {
@@ -447,27 +542,65 @@
             </div>
         </header>
 
-        <!-- KPI Row -->
-        <section class="kpi-grid">
-            <div class="kpi-card highlight">
-                <span class="kpi-label">Total Blocked</span>
-                <span id="stat-total" class="kpi-value">0</span>
-                <span class="kpi-sub">Lifetime requests stopped</span>
+        <!-- Compact Edge-Bar Telemetry Strip -->
+        <section class="telemetry-strip">
+            <!-- Hero Metric -->
+            <div class="t-cell t-hero">
+                <div class="t-top">
+                    <span class="t-label">Total blocked</span>
+                    <span class="t-meta">All time</span>
+                </div>
+                <div class="t-main">
+                    <span id="stat-total" class="t-hero-val">0</span>
+                    <span class="t-unit">requests</span>
+                </div>
+                <div class="t-edge-bar" title="Ads vs Trackers vs Annoyances">
+                    <span id="ratio-ads" class="r-ads" style="width: 0%"></span>
+                    <span id="ratio-trackers" class="r-trk" style="width: 0%"></span>
+                    <span id="ratio-annoyances" class="r-ann" style="width: 0%"></span>
+                </div>
             </div>
-            <div class="kpi-card">
-                <span class="kpi-label">Ads Blocked</span>
-                <span id="stat-ads" class="kpi-value">0</span>
-                <span id="stat-ads-pct" class="kpi-sub">0% of traffic</span>
+
+            <!-- Ads Metric -->
+            <div class="t-cell">
+                <div class="t-top">
+                    <span class="t-label">Ads</span>
+                    <span id="stat-ads-pct" class="t-pct">0% of total</span>
+                </div>
+                <div class="t-main">
+                    <span id="stat-ads" class="t-val">0</span>
+                </div>
+                <div class="t-edge-bar">
+                    <div id="meter-ads" class="t-edge-fill" style="width: 0%; background:#724ae8;"></div>
+                </div>
             </div>
-            <div class="kpi-card">
-                <span class="kpi-label">Trackers Blocked</span>
-                <span id="stat-trackers" class="kpi-value">0</span>
-                <span id="stat-trackers-pct" class="kpi-sub">0% of traffic</span>
+
+            <!-- Trackers Metric -->
+            <div class="t-cell">
+                <div class="t-top">
+                    <span class="t-label">Trackers</span>
+                    <span id="stat-trackers-pct" class="t-pct">0% of total</span>
+                </div>
+                <div class="t-main">
+                    <span id="stat-trackers" class="t-val">0</span>
+                </div>
+                <div class="t-edge-bar">
+                    <div id="meter-trackers" class="t-edge-fill" style="width: 0%; background:#a78bfa;"></div>
+                </div>
             </div>
-            <div class="kpi-card">
-                <span class="kpi-label">Est. Data Saved</span>
-                <span id="stat-data" class="kpi-value">0 KB</span>
-                <span id="stat-time" class="kpi-sub">~0s page load saved</span>
+
+            <!-- Data Saved -->
+            <div class="t-cell">
+                <div class="t-top">
+                    <span class="t-label">Data saved</span>
+                    <span id="stat-time" class="t-meta is-green">~0s saved</span>
+                </div>
+                <div class="t-main">
+                    <span id="stat-data" class="t-val">0 KB</span>
+                </div>
+                <div class="t-edge-bar">
+                    <div class="t-edge-fill" style="width: 100%; background: rgba(74, 222, 128, 0.35);"></div>
+                </div>
             </div>
         </section>
 
