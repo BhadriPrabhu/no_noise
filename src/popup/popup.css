@@ -8,12 +8,14 @@ body {
   width: 256px;
   padding: 16px;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  
-  /* Gradated Dark Cyber Ambient BG from image 3, layered to eliminate boxiness */
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
   background: radial-gradient(130% 90% at 50% 0%, #1c1a2d 0%, #0d0c13 100%);
   color: #c9c7d4;
   box-sizing: border-box;
+}
+
+* {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .extension-wrap {
@@ -44,7 +46,8 @@ body {
 }
 
 .brand-title {
-  font-size: 15px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 16.5px;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.015em;
@@ -275,6 +278,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -283,15 +287,24 @@ body {
 .log-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 8px;
   font-size: 10.5px;
   color: #c9c7d4;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-bottom: 4px;
 }
 
+.log-item span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
 .log-cat {
   color: #9d7dff;
-  text-transform: uppercase;
-  font-size: 9px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
 }

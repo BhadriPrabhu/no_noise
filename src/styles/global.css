@@ -9,3 +9,26 @@
 * {
   font-family: "Playfair Display", Georgia, serif;
 }
+
+/* Custom dark-purple scrollbars for Popup & Analytics */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.22);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(167, 139, 250, 0.45);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
