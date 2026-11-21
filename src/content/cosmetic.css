@@ -1,0 +1,6 @@
+.ad-banner,
+.sponsored-content,
+[id^="google_ads_"],
+[class*="cookie-banner"] {
+  display: none !important;
+}
