@@ -15,6 +15,7 @@ if (chrome.declarativeNetRequest.onRuleMatchedDebug) {
     if (tabId < 0) return;
 
     const category = info.rule.rulesetId; // "ads", "trackers", or "annoyances"
+    if (!["ads", "trackers", "annoyances"].includes(category)) return;
     const domain = new URL(info.request.url).hostname;
 
     if (!tabBlockedLogs[tabId]) tabBlockedLogs[tabId] = [];
