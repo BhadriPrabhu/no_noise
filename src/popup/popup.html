@@ -1,76 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="popup.css">
-  <link rel="stylesheet" href="../styles/global.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="../styles/global.css">
 </head>
+
 <body>
-  <div class="extension-wrap">
-    
-    <!-- Top Nav -->
-    <header class="app-header">
-      <div class="brand-group">
-        <img src="../../assets/icons/icon48.png" alt="NoNoise" class="brand-icon">
-        <span class="brand-title">NoNoise</span>
-      </div>
-      <button id="optionsBtn" class="utility-icon-btn" aria-label="Settings">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="12" cy="12" r="3" stroke-width="2"/>
-          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </header>
+    <div class="extension-wrap">
 
-    <!-- Main List (Custom styled custom switches) -->
-    <main class="controls-list">
-      
-      <!-- Option Rows -->
-      <label class="toggle-row" for="toggle-ads">
-        <div class="label-meta">
-          <span class="primary-label">Block Ads</span>
-          <span class="sub-label">Intrusive media & banners</span>
-        </div>
-        <div class="switch-wrapper">
-          <input type="checkbox" id="toggle-ads" class="native-switch">
-          <span class="custom-switch"></span>
-        </div>
-      </label>
+        <!-- Top Nav -->
+        <header class="app-header">
+            <div class="brand-group">
+                <img src="../../assets/icons/icon48.png" alt="NoNoise" class="brand-icon">
+                <span class="brand-title">NoNoise</span>
+            </div>
+            <div class="header-actions">
+                <button id="logBtn" class="utility-icon-btn" aria-label="Blocked List" title="Blocked on this page">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="8" y1="6" x2="21" y2="6" />
+                        <line x1="8" y1="12" x2="21" y2="12" />
+                        <line x1="8" y1="18" x2="21" y2="18" />
+                        <circle cx="4" cy="6" r="1" fill="currentColor" />
+                        <circle cx="4" cy="12" r="1" fill="currentColor" />
+                        <circle cx="4" cy="18" r="1" fill="currentColor" />
+                    </svg>
+                </button>
+                <button id="optionsBtn" class="utility-icon-btn" aria-label="Settings" title="Settings & Analytics">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="3" stroke-width="2" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </header>
 
-      <label class="toggle-row" for="toggle-trackers">
-        <div class="label-meta">
-          <span class="primary-label">Block Trackers</span>
-          <span class="sub-label">Analytical & behavioral scripts</span>
-        </div>
-        <div class="switch-wrapper">
-          <input type="checkbox" id="toggle-trackers" class="native-switch">
-          <span class="custom-switch"></span>
-        </div>
-      </label>
+        <!-- Blocked Requests Panel (Hidden by default) -->
+        <section id="logPanel" class="log-panel" hidden>
+            <div class="log-header">
+                <span>Blocked on this page</span>
+                <span id="logCount" class="log-badge">0</span>
+            </div>
+            <ul id="logList" class="log-list"></ul>
+        </section>
 
-      <label class="toggle-row" for="toggle-annoyances">
-        <div class="label-meta">
-          <span class="primary-label">Block Annoyances</span>
-          <span class="sub-label">Consent & pop-up banners</span>
-        </div>
-        <div class="switch-wrapper">
-          <input type="checkbox" id="toggle-annoyances" class="native-switch">
-          <span class="custom-switch"></span>
-        </div>
-      </label>
+        <!-- Main List (Custom styled custom switches) -->
+        <main class="controls-list">
 
-    </main>
+            <!-- Option Rows -->
+            <label class="toggle-row" for="toggle-ads">
+                <div class="label-meta">
+                    <span class="primary-label">Block Ads</span>
+                    <span class="sub-label">Intrusive media & banners</span>
+                </div>
+                <div class="switch-wrapper">
+                    <input type="checkbox" id="toggle-ads" class="native-switch">
+                    <span class="custom-switch"></span>
+                </div>
+            </label>
 
-    <!-- Divider Decor -->
-    <div class="ui-divider"></div>
+            <label class="toggle-row" for="toggle-trackers">
+                <div class="label-meta">
+                    <span class="primary-label">Block Trackers</span>
+                    <span class="sub-label">Analytical & behavioral scripts</span>
+                </div>
+                <div class="switch-wrapper">
+                    <input type="checkbox" id="toggle-trackers" class="native-switch">
+                    <span class="custom-switch"></span>
+                </div>
+            </label>
 
-    <!-- Utility Button actions -->
-    <footer class="app-actions">
-      <button id="whitelistBtn" class="action-btn is-green">Pause on this site</button>
-      <button id="pickerBtn" class="action-btn is-secondary">Zap Element</button>
-    </footer>
+            <label class="toggle-row" for="toggle-annoyances">
+                <div class="label-meta">
+                    <span class="primary-label">Block Annoyances</span>
+                    <span class="sub-label">Consent & pop-up banners</span>
+                </div>
+                <div class="switch-wrapper">
+                    <input type="checkbox" id="toggle-annoyances" class="native-switch">
+                    <span class="custom-switch"></span>
+                </div>
+            </label>
 
-  </div>
-  <script src="popup.js"></script>
+        </main>
+
+        <!-- Divider Decor -->
+        <div class="ui-divider"></div>
+
+        <!-- Utility Button actions -->
+        <footer class="app-actions">
+            <button id="whitelistBtn" class="action-btn is-green">Pause on this site</button>
+            <button id="pickerBtn" class="action-btn is-secondary">Zap Element</button>
+        </footer>
+
+    </div>
+    <script src="popup.js"></script>
 </body>
+
 </html>

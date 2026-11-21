@@ -231,3 +231,67 @@ body {
 .action-btn.is-secondary:active {
   background: #1b182b;
 }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.log-panel {
+  background: rgba(114, 74, 232, 0.06);
+  border: 1px solid rgba(114, 74, 232, 0.15);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 14px;
+  max-height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.log-panel[hidden] {
+  display: none;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.log-badge {
+  background: #5b36e0;
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+.log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: #c9c7d4;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 4px;
+}
+
+.log-cat {
+  color: #9d7dff;
+  text-transform: uppercase;
+  font-size: 9px;
+  font-weight: 700;
+}
