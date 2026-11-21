@@ -1,0 +1,6 @@
+_metadata/
+node_modules/
+*.crx
+*.zip
+.DS_Store
+Thumbs.db
