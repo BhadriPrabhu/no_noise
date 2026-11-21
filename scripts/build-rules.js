@@ -6,7 +6,8 @@ const LISTS = [
         name: "ads",
         urls: [
             "https://easylist.to/easylist/easylist.txt",
-            "https://easylist-downloads.adblockplus.org/indianlist.txt"
+            "https://easylist-downloads.adblockplus.org/indianlist.txt",
+            "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=0"
         ],
         outFile: "ads.json",
         startId: 1,
@@ -116,11 +117,14 @@ const LISTS = [
     },
     {
         name: "annoyances",
-        urls: ["https://easylist.to/easylist/fanboy-annoyance.txt"],
+        urls: [
+            "https://easylist.to/easylist/fanboy-annoyance.txt",
+            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances-others.txt"
+        ],
         outFile: "annoyances.json",
         startId: 30001,
         maxRules: 5000,
-        extractCosmetic: false,
+        extractCosmetic: true,
         extraRules: []
     }
 ];
