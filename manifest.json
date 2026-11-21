@@ -71,6 +71,19 @@
                 "src/content/youtube-ads.js"
             ],
             "run_at": "document_idle"
+        },
+        {
+            "matches": [
+                "*://*.instagram.com/*",
+                "*://*.linkedin.com/*",
+                "*://*.x.com/*",
+                "*://*.twitter.com/*",
+                "*://*.reddit.com/*"
+            ],
+            "js": [
+                "src/content/social-ads.js"
+            ],
+            "run_at": "document_idle"
         }
     ]
 }
