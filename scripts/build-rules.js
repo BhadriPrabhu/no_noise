@@ -68,40 +68,68 @@ const LISTS = [
                     resourceTypes: ["script", "image", "xmlhttprequest", "sub_frame"]
                 }
             },
+            // Inside LISTS[0].extraRules (replace 19007-19010 and add 19011-19013):
             {
                 id: 19007,
-                priority: 1,
+                priority: 2,
                 action: { type: "block" },
                 condition: {
                     urlFilter: "||spotify.com/ads/",
-                    resourceTypes: ["xmlhttprequest", "script", "image", "media"]
+                    resourceTypes: ["xmlhttprequest", "script", "image", "media", "other"]
                 }
             },
             {
                 id: 19008,
-                priority: 1,
+                priority: 2,
                 action: { type: "block" },
                 condition: {
                     urlFilter: "||spotify.com/ad-logic/",
-                    resourceTypes: ["xmlhttprequest", "script"]
+                    resourceTypes: ["xmlhttprequest", "script", "media", "other"]
                 }
             },
             {
                 id: 19009,
-                priority: 1,
+                priority: 2,
                 action: { type: "block" },
                 condition: {
                     urlFilter: "||adeventtracker.spotify.com^",
-                    resourceTypes: ["xmlhttprequest", "ping", "script"]
+                    resourceTypes: ["xmlhttprequest", "ping", "script", "other"]
                 }
             },
             {
                 id: 19010,
-                priority: 1,
+                priority: 2,
                 action: { type: "block" },
                 condition: {
                     urlFilter: "||gabo-receiver-service.spotify.com^",
-                    resourceTypes: ["xmlhttprequest", "ping"]
+                    resourceTypes: ["xmlhttprequest", "ping", "other"]
+                }
+            },
+            {
+                id: 19011,
+                priority: 2,
+                action: { type: "block" },
+                condition: {
+                    urlFilter: "||audio-ak-spotify-com.akamaized.net/ad/",
+                    resourceTypes: ["media", "xmlhttprequest", "other"]
+                }
+            },
+            {
+                id: 19012,
+                priority: 2,
+                action: { type: "block" },
+                condition: {
+                    urlFilter: "||heads-fa.spotify.com/ad/",
+                    resourceTypes: ["media", "xmlhttprequest", "other"]
+                }
+            },
+            {
+                id: 19013,
+                priority: 2,
+                action: { type: "block" },
+                condition: {
+                    urlFilter: "||spclient.wg.spotify.com/melody/v1/time",
+                    resourceTypes: ["xmlhttprequest", "other"]
                 }
             }
         ]
@@ -132,24 +160,25 @@ const LISTS = [
 const cosmeticMap = {}; // { "timesofindia.indiatimes.com": Set(["#ad-box", ...]) }
 
 function addCosmeticRule(line) {
-    // Match domain-specific cosmetic rules: domain1.com,domain2.com##.selector
+    if (line.includes("#@#")) return; // Skip cosmetic exception rules
     const idx = line.indexOf("##");
-    if (idx <= 0) return; // Skip generic global rules (##.ad) to keep CSS fast
+    if (idx <= 0) return;
 
     const domainsPart = line.slice(0, idx);
     const selector = line.slice(idx + 2).trim();
 
-    // Skip non-standard procedural selectors that Chrome CSS doesn't understand
     if (
         !selector ||
+        selector.startsWith("+js(") ||
         selector.includes(":-abp-") ||
         selector.includes(":has-text") ||
         selector.includes(":upward") ||
-        selector.includes(":style(")
+        selector.includes(":style(") ||
+        selector.includes(":xpath(")
     ) {
         return;
     }
-
+    
     const domains = domainsPart.split(",");
     for (const d of domains) {
         const domain = d.trim().toLowerCase();
