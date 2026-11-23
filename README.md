@@ -24,6 +24,7 @@ The extension combines declarative network request rules with cosmetic filtering
 - **Platform-specific ad handling**
   - YouTube ad playback controls
   - Sponsored feed posts on Instagram, LinkedIn, X/Twitter, and Reddit
+  - Spotify ad muting and playback skipping
 - **Per-site pause** with an allow-all dynamic rule for the selected domain
 - **Zap element** tool to hide any page element temporarily
 - **Blocked-request activity** for the current tab
@@ -41,7 +42,7 @@ The extension combines declarative network request rules with cosmetic filtering
 | :--- | :--- | :--- |
 | **1. Network** | Ad servers, trackers, cookie scripts | [`scripts/build-rules.js`](./scripts/build-rules.js) → `rules/*.json` |
 | **2. Cosmetic** | Empty ad containers & leftover boxes | [`src/background/service-worker.js`](./src/background/service-worker.js) |
-| **3. Behavioral** | YouTube video ads & social "Sponsored" posts | [`src/content/youtube-ads.js`](./src/content/youtube-ads.js), [`src/content/social-ads.js`](./src/content/social-ads.js) |
+| **3. Behavioral** | YouTube and Spotify ad playback, plus social "Sponsored" posts | [`src/content/youtube-ads.js`](./src/content/youtube-ads.js), [`src/content/spotify-ads.js`](./src/content/spotify-ads.js), [`src/content/social-ads.js`](./src/content/social-ads.js) |
 
 ## Popup
 
@@ -100,6 +101,7 @@ src/
     cosmetic-sync.js           Syncs cosmetic filtering state
     element-picker.js          Interactive element hiding tool
     social-ads.js              Social feed ad filtering
+    spotify-ads.js             Spotify ad playback handling
     youtube-ads.js             YouTube ad playback handling
   options/                     Analytics and whitelist dashboard
   popup/                       Main popup controls
